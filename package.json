@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "serve": "ng serve --open=false",
+    "electron": "electron ./electron/main.js",
+    "start": "wait-on http://localhost:4200 && npm run electron",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
