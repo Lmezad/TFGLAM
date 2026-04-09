@@ -1,0 +1,9 @@
+<select id="radioSelect" [(ngModel)]="selectedRadioUrl" (change)="onRadioChange()">
+  <option *ngFor="let radio of radios" [value]="radio.url">
+    {{ radio.name }}
+  </option>
+</select>
+
+<audio #audioPlayer controls>
+  Tu navegador no soporta audio HTML5.
+</audio>
