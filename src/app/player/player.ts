@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { radiosData, Radio } from '../cons/radio';
+import { hydrateRadioDurations, radiosData, Radio } from '../cons/radio';
 
 @Component({
   selector: 'app-player',
@@ -10,11 +10,15 @@ import { radiosData, Radio } from '../cons/radio';
   templateUrl: './player.html',
   styleUrls: ['./player.css'],
 })
-export class Player implements AfterViewInit {
+export class Player implements AfterViewInit, OnInit {
   @ViewChild('audioPlayer') audioPlayer?: ElementRef<HTMLAudioElement>;
 
   radios: Radio[] = radiosData;
   selectedRadioUrl = this.radios[0]?.url ?? '';
+
+  async ngOnInit(): Promise<void> {
+    this.radios = await hydrateRadioDurations(this.radios);
+  }
 
   ngAfterViewInit(): void {
     this.updateAudioSource(false);

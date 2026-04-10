@@ -1,6 +1,7 @@
 <select id="radioSelect" [(ngModel)]="selectedRadioUrl" (change)="onRadioChange()">
   <option *ngFor="let radio of radios" [value]="radio.url">
     {{ radio.name }}
+    {{ radio.duration }}
   </option>
 </select>
 
