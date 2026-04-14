@@ -22,6 +22,42 @@ export const radiosData: Radio[] = [
     name: 'FlyLo FM',
     url: 'https://5fkef9udgm.ufs.sh/f/gkQPQrvJfr6GGWq6U5NTurIYbOT76l0f92wBWZzAFh4UtqLQ',
   },
+  {
+    name: 'The Lab',
+    url: 'https://5fkef9udgm.ufs.sh/f/gkQPQrvJfr6GTLEdVuFPrBmIdEt0134i2k6fQXT7JLaFY9cC',
+  },
+  {
+    name: 'Soulwax FM',
+    url:'https://5fkef9udgm.ufs.sh/f/gkQPQrvJfr6GIBybXA6fv5SjqZOCRAdYWkpz2Vaonl8BJEer',
+  },
+  {
+    name: 'Vinewood Boulevard Radio',
+    url:'https://5fkef9udgm.ufs.sh/f/gkQPQrvJfr6GaDk6xgY8NwBHd6vKx4RLSIcWfuk0pE7r1tsD',
+  },
+  {
+    name: 'Blue Ark',
+    url:'https://5fkef9udgm.ufs.sh/f/gkQPQrvJfr6GPeFmwUz4xfGrguI7mQS2Kd1R6HvzBWJhLkj9',
+  },
+  {
+    name: 'Space 103.2',
+    url:'https://5fkef9udgm.ufs.sh/f/gkQPQrvJfr6GXC4i5EcNMTgQVYd3xEGoWtaIuH9KCNpOfwj0',
+  },
+  {
+    name: 'Radio Mirror Park',
+    url:'https://5fkef9udgm.ufs.sh/f/gkQPQrvJfr6Gri8o5hD3fJbijF5ce2zgZWn8kOrNYRmMwV9v',
+  },
+  {
+    name: 'The Lowdown 91.1',
+    url:'https://5fkef9udgm.ufs.sh/f/gkQPQrvJfr6GCponaa4ehRQBSG74yAsMxFVbKaHZJEromwYn',
+  },
+  {
+    name: 'Los Santos Rock Radio',
+    url:'',
+  },
+  {
+    name: 'East Los FM',
+    url:'https://5fkef9udgm.ufs.sh/f/gkQPQrvJfr6GxDIUfzOIrw2YBqWjL7ub3nOTsHk8UvRg51Xe',
+  },
 ];
 
 const isFiniteDuration = (duration: number): boolean => Number.isFinite(duration) && duration > 0;
