@@ -17,6 +17,8 @@ export class Player implements AfterViewInit, OnInit {
 
   radios: Radio[] = radiosData;
   selectedRadioUrl = this.radios[0]?.url ?? '';
+  isPlaying = false;
+  volume = 1;
   private activeRadioUrl = this.selectedRadioUrl;
   // Stores when each audio can be randomized again after leaving it.
   private randomStartCooldowns = new Map<string, number>();
@@ -28,11 +30,24 @@ export class Player implements AfterViewInit, OnInit {
   }
 
   ngAfterViewInit(): void {
+    this.syncVolume();
     this.updateAudioSource({ autoplay: false, randomStart: false });
   }
 
   onRadioChange(): void {
     this.updateAudioSource({ autoplay: true, randomStart: true });
+  }
+
+  onAudioPlay(): void {
+    this.isPlaying = true;
+  }
+
+  onAudioPause(): void {
+    this.isPlaying = false;
+  }
+
+  onVolumeInput(): void {
+    this.syncVolume();
   }
 
   private updateAudioSource(options: { autoplay: boolean; randomStart: boolean }): void {
@@ -119,5 +134,32 @@ export class Player implements AfterViewInit, OnInit {
     }
 
     return audio;
+  }
+
+  togglePlay(): void {
+    const audio = this.getAudioElement();
+
+    if (!audio) {
+      return;
+    }
+
+    if (audio.paused) {
+      void audio.play().catch(() => {
+        this.isPlaying = false;
+      });
+      return;
+    }
+
+    audio.pause();
+  }
+
+  private syncVolume(): void {
+    const audio = this.getAudioElement();
+
+    if (!audio) {
+      return;
+    }
+
+    audio.volume = this.volume;
   }
 }

@@ -3,6 +3,7 @@ export type Radio = {
   url: string;
   duration?: number;
   img?: string;
+  
 };
 
 export const radiosData: Radio[] = [

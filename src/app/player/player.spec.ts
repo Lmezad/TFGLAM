@@ -120,4 +120,51 @@ describe('Player', () => {
     expect(randomSpy).toHaveBeenCalledTimes(2);
     expect(addEventListenerSpy).toHaveBeenCalledTimes(3);
   });
+
+  it('should toggle the play button label based on audio state', async () => {
+    const button: HTMLButtonElement = fixture.nativeElement.querySelector('.play-button');
+    const audio: HTMLAudioElement = fixture.nativeElement.querySelector('audio');
+    const playSpy = vi.spyOn(audio, 'play').mockResolvedValue(undefined);
+    const pauseSpy = vi.spyOn(audio, 'pause').mockImplementation(() => undefined);
+
+    expect(button.textContent?.trim()).toBe('Play');
+
+    button.click();
+    expect(playSpy).toHaveBeenCalledTimes(1);
+
+    audio.dispatchEvent(new Event('play'));
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    expect(button.textContent?.trim()).toBe('Pause');
+
+    Object.defineProperty(audio, 'paused', { configurable: true, get: () => false });
+    button.click();
+    expect(pauseSpy).toHaveBeenCalledTimes(1);
+
+    audio.dispatchEvent(new Event('pause'));
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    expect(button.textContent?.trim()).toBe('Play');
+  });
+
+  it('should update the audio volume from the slider', async () => {
+    const slider: HTMLInputElement = fixture.nativeElement.querySelector('#volumeSlider');
+    const audio: HTMLAudioElement = fixture.nativeElement.querySelector('audio');
+
+    Object.defineProperty(audio, 'volume', {
+      configurable: true,
+      writable: true,
+      value: 1,
+    });
+
+    slider.value = '0.35';
+    slider.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    expect(component.volume).toBe(0.35);
+    expect(audio.volume).toBe(0.35);
+  });
 });
