@@ -27,18 +27,25 @@ describe('Player', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render radio options', () => {
-    const select: HTMLSelectElement =
-      fixture.nativeElement.querySelector('#radioSelect');
+  it('should render the radio roulette with all station options', () => {
+    const options: HTMLButtonElement[] = Array.from(
+      fixture.nativeElement.querySelectorAll('.roulette-option'),
+    );
+    const activeOption: HTMLButtonElement | null =
+      fixture.nativeElement.querySelector('.roulette-option.active');
+    const centerLabel: HTMLElement | null =
+      fixture.nativeElement.querySelector('.roulette-center strong');
 
-    expect(select).toBeTruthy();
-    expect(select.options.length).toBe(component.radios.length);
-    expect(select.options[0].textContent?.trim()).toBe(component.radios[0].name);
+    expect(options.length).toBe(component.radios.length);
+    expect(options[0].textContent?.trim()).toBe(component.radios[0].name);
+    expect(activeOption?.textContent?.trim()).toBe(component.radios[0].name);
+    expect(centerLabel?.textContent?.trim()).toBe(component.radios[0].name);
   });
 
   it('should load and play the selected radio', async () => {
-    const select: HTMLSelectElement =
-      fixture.nativeElement.querySelector('#radioSelect');
+    const options: HTMLButtonElement[] = Array.from(
+      fixture.nativeElement.querySelectorAll('.roulette-option'),
+    );
     const audio: HTMLAudioElement = fixture.nativeElement.querySelector('audio');
     const loadSpy = vi.spyOn(audio, 'load').mockImplementation(() => undefined);
     const playSpy = vi.spyOn(audio, 'play').mockResolvedValue(undefined);
@@ -47,8 +54,7 @@ describe('Player', () => {
 
     component.radios[1].duration = 120;
 
-    select.value = component.radios[1].url;
-    select.dispatchEvent(new Event('change'));
+    options[1].click();
     fixture.detectChanges();
     await fixture.whenStable();
 
@@ -59,6 +65,7 @@ describe('Player', () => {
     expect(loadedMetadataHandler).toBeTruthy();
     loadedMetadataHandler?.(new Event('loadedmetadata'));
 
+    expect(component.selectedRadioIndex).toBe(1);
     expect(component.selectedRadioUrl).toBe(component.radios[1].url);
     expect(audio.src).toBe(component.radios[1].url);
     expect(audio.currentTime).toBe(60);
@@ -68,8 +75,9 @@ describe('Player', () => {
   });
 
   it('should restore the previous position when returning within the audio cooldown', async () => {
-    const select: HTMLSelectElement =
-      fixture.nativeElement.querySelector('#radioSelect');
+    const options: HTMLButtonElement[] = Array.from(
+      fixture.nativeElement.querySelectorAll('.roulette-option'),
+    );
     const audio: HTMLAudioElement = fixture.nativeElement.querySelector('audio');
     vi.spyOn(audio, 'load').mockImplementation(() => undefined);
     const playSpy = vi.spyOn(audio, 'play').mockResolvedValue(undefined);
@@ -82,8 +90,7 @@ describe('Player', () => {
     component.radios[2].duration = 200;
 
     dateNowSpy.mockReturnValue(100_000);
-    select.value = component.radios[1].url;
-    select.dispatchEvent(new Event('change'));
+    options[1].click();
     fixture.detectChanges();
     await fixture.whenStable();
 
@@ -96,8 +103,7 @@ describe('Player', () => {
     audio.currentTime = 42;
 
     dateNowSpy.mockReturnValue(130_000);
-    select.value = component.radios[2].url;
-    select.dispatchEvent(new Event('change'));
+    options[2].click();
     fixture.detectChanges();
     await fixture.whenStable();
 
@@ -107,8 +113,7 @@ describe('Player', () => {
     expect(audio.currentTime).toBe(50);
 
     dateNowSpy.mockReturnValue(150_000);
-    select.value = component.radios[1].url;
-    select.dispatchEvent(new Event('change'));
+    options[1].click();
     fixture.detectChanges();
     await fixture.whenStable();
 

@@ -1,9 +1,23 @@
 
-<select id="radioSelect" [(ngModel)]="selectedRadioUrl" (change)="onRadioChange()">
-  <option *ngFor="let radio of radios" [value]="radio.url">
-    {{ radio.name }}
-  </option>
-</select>
+<section class="station-roulette" aria-label="Selector de emisora">
+  <div class="roulette-wheel">
+    <button
+      *ngFor="let radio of radios; let index = index"
+      type="button"
+      class="roulette-option"
+      [class.active]="index === selectedRadioIndex"
+      [attr.aria-pressed]="index === selectedRadioIndex"
+      [style]="getRadioWheelStyle(index)"
+      (click)="selectRadio(index)"
+    >
+      {{ radio.name }}
+    </button>
+
+    <div class="roulette-center">
+      <strong>{{ selectedRadioName }}</strong>
+    </div>
+  </div>
+</section>
 
 <button
   type="button"

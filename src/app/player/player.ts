@@ -16,6 +16,7 @@ export class Player implements AfterViewInit, OnInit {
   @ViewChild('audioPlayer') audioPlayer?: ElementRef<HTMLAudioElement>;
 
   radios: Radio[] = radiosData;
+  selectedRadioIndex = 0;
   selectedRadioUrl = this.radios[0]?.url ?? '';
   isPlaying = false;
   volume = 1;
@@ -35,7 +36,17 @@ export class Player implements AfterViewInit, OnInit {
   }
 
   onRadioChange(): void {
+    this.selectedRadioUrl = this.radios[this.selectedRadioIndex]?.url ?? '';
     this.updateAudioSource({ autoplay: true, randomStart: true });
+  }
+
+  selectRadio(index: number): void {
+    if (index < 0 || index >= this.radios.length) {
+      return;
+    }
+
+    this.selectedRadioIndex = index;
+    this.onRadioChange();
   }
 
   onAudioPlay(): void {
@@ -48,6 +59,16 @@ export class Player implements AfterViewInit, OnInit {
 
   onVolumeInput(): void {
     this.syncVolume();
+  }
+
+  get selectedRadioName(): string {
+    return this.radios[this.selectedRadioIndex]?.name ?? '';
+  }
+
+  getRadioWheelStyle(index: number): string {
+    const angle = (360 / this.radios.length) * index - 90;
+
+    return `transform: rotate(${angle}deg) translateY(calc(var(--wheel-radius) * -1)) rotate(-${angle}deg);`;
   }
 
   private updateAudioSource(options: { autoplay: boolean; randomStart: boolean }): void {
