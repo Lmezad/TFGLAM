@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { hydrateRadioDurations, radiosData, Radio } from '../cons/radio';
 
@@ -14,6 +14,11 @@ export class Player implements AfterViewInit, OnInit {
   private static readonly RANDOM_START_COOLDOWN_MS = 60_000;
 
   @ViewChild('audioPlayer') audioPlayer?: ElementRef<HTMLAudioElement>;
+  @ViewChild('wheelContainer') wheelContainer?: ElementRef<HTMLDivElement>;
+
+  private wheelRadiusPx = 0;
+
+  constructor(private cd: ChangeDetectorRef) {}
 
   radios: Radio[] = radiosData;
   selectedRadioIndex = 0;
@@ -32,6 +37,26 @@ export class Player implements AfterViewInit, OnInit {
 
   ngAfterViewInit(): void {
     this.syncVolume();
+
+    // Measure the wheel and option size to compute a reliable pixel radius so
+    // translated positions are accurate across browsers.
+    try {
+      if (this.wheelContainer?.nativeElement) {
+        const wheelEl = this.wheelContainer.nativeElement as HTMLElement;
+        const wheelRect = wheelEl.getBoundingClientRect();
+        const optionEl = wheelEl.querySelector('.roulette-option') as HTMLElement | null;
+        const optionHalf = optionEl ? optionEl.offsetHeight / 2 : 16; // fallback
+
+        // Radius: from center to where option should sit (slightly inside the circle)
+        this.wheelRadiusPx = Math.max(0, (wheelRect.width / 2) - optionHalf - 6);
+      }
+    } catch {
+      // ignore measurement errors and fall back to CSS variable
+    }
+
+    // Ensure template updates with the measured radius
+    this.cd.detectChanges();
+
     this.updateAudioSource({ autoplay: false, randomStart: false });
   }
 
@@ -65,10 +90,27 @@ export class Player implements AfterViewInit, OnInit {
     return this.radios[this.selectedRadioIndex]?.name ?? '';
   }
 
-  getRadioWheelStyle(index: number): string {
-    const angle = (360 / this.radios.length) * index - 90;
+  getRadioWheelStyle(index: number): { [key: string]: string } {
+    const total = this.radios.length;
+    const angle = (360 / total) * index;
+    const radians = (angle * Math.PI) / 180;
 
-    return `transform: rotate(${angle}deg) translateY(calc(var(--wheel-radius) * -1)) rotate(-${angle}deg);`;
+    if (this.wheelRadiusPx > 0) {
+      const x = Math.cos(radians - Math.PI / 2) * this.wheelRadiusPx;
+      const y = Math.sin(radians - Math.PI / 2) * this.wheelRadiusPx;
+
+      return {
+        left: `calc(50% + ${x}px)`,
+        top: `calc(50% + ${y}px)`,
+        transform: 'translate(-50%, -50%)',
+      };
+    }
+
+    // Fallback: use CSS variable based transform (initial render before measurement)
+    const fallbackAngle = (360 / this.radios.length) * index - 90;
+    return {
+      transform: `rotate(${fallbackAngle}deg) translateY(calc(-1 * var(--wheel-radius))) rotate(-${fallbackAngle}deg)`,
+    };
   }
 
   private updateAudioSource(options: { autoplay: boolean; randomStart: boolean }): void {

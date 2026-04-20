@@ -4,7 +4,7 @@
   --wheel-option-width: clamp(4.2rem, 15vw, 5.75rem);
   --wheel-option-height: clamp(2.5rem, 8vw, 3rem);
   --wheel-option-font-size: clamp(0.58rem, 1.8vw, 0.7rem);
-  --wheel-radius: clamp(7.75rem, 31vw, 12rem);
+  --wheel-radius: clamp(9rem, 35vw, 14rem);
   display: block;
   padding: 1rem;
 }
@@ -32,6 +32,7 @@
 
 .station-roulette {
   margin-top: 1rem;
+  overflow: visible;
 }
 
 .roulette-wheel {
@@ -40,24 +41,24 @@
   min-height: var(--wheel-size);
   aspect-ratio: 1;
   margin: 0 auto 1.5rem;
-  border-radius: 50%;
   background:
     radial-gradient(circle at center, #f3f4f6 0 24%, transparent 24.5%),
     radial-gradient(circle at center, transparent 0 63%, #d1d5db 63.5% 64.5%, transparent 65%),
     linear-gradient(145deg, #111827, #374151);
+  overflow: visible;
 }
 
 .roulette-option {
   position: absolute;
-  top: 50%;
   left: 50%;
+  top: 50%;
+  z-index: 2;
   display: flex;
   justify-content: center;
   align-items: center;
   width: var(--wheel-option-width);
   min-height: var(--wheel-option-height);
-  margin-top: calc(var(--wheel-option-height) / -2);
-  margin-left: calc(var(--wheel-option-width) / -2);
+  /* centering handled via transform: translate(-50%,-50%) set from ngStyle */
   padding: 0.35rem 0.45rem;
   border: 1px solid transparent;
   border-radius: 1rem;
@@ -87,6 +88,8 @@
 .roulette-center {
   position: absolute;
   inset: 50% auto auto 50%;
+  z-index: 1;
+  pointer-events: none;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -96,10 +99,9 @@
   margin-top: calc(var(--wheel-center-size) / -2);
   margin-left: calc(var(--wheel-center-size) / -2);
   border-radius: 50%;
-  background: #fff;
+  background: transparent;
   color: #111827;
   text-align: center;
-  box-shadow: 0 0.5rem 1.25rem rgba(17, 24, 39, 0.18);
 }
 
 .roulette-center span,
