@@ -1,14 +1,18 @@
-import { Component, OnDestroy, OnInit  } from '@angular/core';
+import { Component, ChangeDetectorRef, OnDestroy, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { interval, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-countdown',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './countdown.html',
-  styleUrl: './countdown.css',
+  styleUrls: ['./countdown.css'],
 })
 export class Countdown implements OnInit, OnDestroy {
-private subscription!: Subscription;
+  private subscription?: Subscription;
+
+  constructor(private cdr: ChangeDetectorRef) {}
 
   public targetDate = new Date('2026-11-19T00:00:00');
 
@@ -19,13 +23,16 @@ private subscription!: Subscription;
   public seconds: number = 0;
 
   ngOnInit(): void {
+    // Run once immediately so UI doesn't start at zeros
+    this.updateCountdown();
+
     this.subscription = interval(1000).subscribe(() => {
       this.updateCountdown();
     });
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.subscription?.unsubscribe();
   }
 
   private updateCountdown(): void {
@@ -46,5 +53,14 @@ private subscription!: Subscription;
     this.hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
     this.minutes = Math.floor((difference / (1000 * 60)) % 60);
     this.seconds = Math.floor((difference / 1000) % 60);
+
+    // If Zone.js is not present, async tasks (like rxjs interval) won't trigger
+    // Angular change detection automatically. Force a check so template updates
+    // without requiring a full page reload.
+    try {
+      this.cdr.detectChanges();
+    } catch {
+      // ignore if detection can't run (e.g. during server render)
+    }
   }
 }

@@ -106,7 +106,6 @@ export class Player implements AfterViewInit, OnInit {
       };
     }
 
-    // Fallback: use CSS variable based transform (initial render before measurement)
     const fallbackAngle = (360 / this.radios.length) * index - 90;
     return {
       transform: `rotate(${fallbackAngle}deg) translateY(calc(-1 * var(--wheel-radius))) rotate(-${fallbackAngle}deg)`,
@@ -126,13 +125,12 @@ export class Player implements AfterViewInit, OnInit {
     const startPlayback = (): void => {
       if (options.autoplay) {
         void audio.play().catch(() => {
-          // Browsers can block autoplay depending on media policies.
+
         });
       }
     };
 
     if (previousRadioUrl && previousRadioUrl !== nextRadioUrl) {
-      // Leaving an audio starts its own cooldown and preserves its last position.
       this.savedPlaybackPositions.set(previousRadioUrl, audio.currentTime);
       this.randomStartCooldowns.set(
         previousRadioUrl,
@@ -154,10 +152,8 @@ export class Player implements AfterViewInit, OnInit {
 
         if (duration && duration > 0) {
           if (shouldRandomStart) {
-            // First entry or expired cooldown: start from a random valid point.
             audio.currentTime = Math.random() * duration;
           } else {
-            // Re-entering during cooldown: resume exactly where this audio was left.
             const savedPosition = this.savedPlaybackPositions.get(nextRadioUrl) ?? 0;
             audio.currentTime = Math.min(savedPosition, duration);
           }
