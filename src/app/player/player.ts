@@ -26,9 +26,7 @@ export class Player implements AfterViewInit, OnInit {
   isPlaying = false;
   volume = 1;
   private activeRadioUrl = this.selectedRadioUrl;
-  // Stores when each audio can be randomized again after leaving it.
   private randomStartCooldowns = new Map<string, number>();
-  // Remembers the last playback position for each audio while its cooldown is active.
   private savedPlaybackPositions = new Map<string, number>();
 
   async ngOnInit(): Promise<void> {
@@ -38,23 +36,20 @@ export class Player implements AfterViewInit, OnInit {
   ngAfterViewInit(): void {
     this.syncVolume();
 
-    // Measure the wheel and option size to compute a reliable pixel radius so
-    // translated positions are accurate across browsers.
+
     try {
       if (this.wheelContainer?.nativeElement) {
         const wheelEl = this.wheelContainer.nativeElement as HTMLElement;
         const wheelRect = wheelEl.getBoundingClientRect();
         const optionEl = wheelEl.querySelector('.roulette-option') as HTMLElement | null;
-        const optionHalf = optionEl ? optionEl.offsetHeight / 2 : 16; // fallback
+        const optionHalf = optionEl ? optionEl.offsetHeight / 2 : 16;
 
-        // Radius: from center to where option should sit (slightly inside the circle)
         this.wheelRadiusPx = Math.max(0, (wheelRect.width / 2) - optionHalf - 6);
       }
     } catch {
-      // ignore measurement errors and fall back to CSS variable
+
     }
 
-    // Ensure template updates with the measured radius
     this.cd.detectChanges();
 
     this.updateAudioSource({ autoplay: false, randomStart: false });
