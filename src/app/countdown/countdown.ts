@@ -23,7 +23,6 @@ export class Countdown implements OnInit, OnDestroy {
   public seconds: number = 0;
 
   ngOnInit(): void {
-    // Run once immediately so UI doesn't start at zeros
     this.updateCountdown();
 
     this.subscription = interval(1000).subscribe(() => {
