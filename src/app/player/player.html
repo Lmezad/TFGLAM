@@ -1,49 +1,39 @@
-
 <section class="station-roulette" aria-label="Selector de emisora">
+  <!-- video -->
   <video autoplay loop muted class="background-video">
-    <source src="https://5fkef9udgm.ufs.sh/f/gkQPQrvJfr6GuYtoGmamtfCLDHTWN7a2goKn1vZJPIA5GM9e" type="video/mp4">
+    <source src="https://5fkef9udgm.ufs.sh/f/gkQPQrvJfr6GuYtoGmamtfCLDHTWN7a2goKn1vZJPIA5GM9e" type="video/mp4" />
+    Tu navegador no soporta el elemento de video.
   </video>
+  <!-- maincontainer -->
   <div class="roulette-wheel" #wheelContainer>
-    <button
-      *ngFor="let radio of radios; let index = index"
-      type="button"
-      class="roulette-option"
-      [class.active]="index === selectedRadioIndex"
-      [attr.aria-pressed]="index === selectedRadioIndex"
-  [ngStyle]="getRadioWheelStyle(index)"
-      (click)="selectRadio(index)"
-    >
-      <!-- {{ radio.name }} -->
-        <img [src]="radio.img" alt="radiologo" class ="radiologo" />
+    <!-- botones radios -->
+    <button *ngFor="let radio of radios; let index = index" type="button" class="roulette-option"
+      [class.active]="index === selectedRadioIndex" [attr.aria-pressed]="index === selectedRadioIndex"
+      (click)="selectRadio(index)">
+      <img [src]="radio.img" alt="radiologo" class="radiologo" />
     </button>
-  
+    <!-- texto centro -->
     <div class="roulette-center">
       <strong>{{ selectedRadioName }}</strong>
     </div>
+    <!-- reproductor audio  -->
+    <audio #audioPlayer autoplay (play)="onAudioPlay()" (pause)="onAudioPause()">
+      Tu navegador no soporta audio HTML5.
+    </audio>
+    <!-- controles -->
+    <div>
+      <button type="button" class="play-button" (click)="togglePlay()"
+        [attr.aria-label]="isPlaying ? 'Pause audio' : 'Play audio'">
+        {{ isPlaying ? 'Pause' : 'Play' }}
+      </button>
+
+      <label class="volume-control" for="volumeSlider">
+        <span>Volume</span>
+        <input id="volumeSlider" type="range" min="0" max="1" step="0.01" [(ngModel)]="volume"
+          (input)="onVolumeInput()" />
+      </label>
+    </div>
   </div>
-  <button
-  type="button"
-  class="play-button"
-  (click)="togglePlay()"
-  [attr.aria-label]="isPlaying ? 'Pause audio' : 'Play audio'"
->
-  {{ isPlaying ? 'Pause' : 'Play' }}
-</button>
 
-<label class="volume-control" for="volumeSlider">
-  <span>Volume</span>
-  <input
-    id="volumeSlider"
-    type="range"
-    min="0"
-    max="1"
-    step="0.01"
-    [(ngModel)]="volume"
-    (input)="onVolumeInput()"
-  />
-</label>
 
-<audio #audioPlayer autoplay (play)="onAudioPlay()" (pause)="onAudioPause()">
-  Tu navegador no soporta audio HTML5.
-</audio>
 </section>

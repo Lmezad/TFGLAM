@@ -1,28 +1,15 @@
 .background-video {
-position: absolute;
-object-fit: cover;
-height: 100%;
-}
+  position: absolute;
+  object-fit: cover;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 0;
 
-.play-button {
-  margin-top: 0.75rem;
-  padding: 0.6rem 1rem;
-  border: 0;
-  border-radius: 999px;
-  background: #111827;
-  color: #f9fafb;
-  font: inherit;
-  font-weight: 600;
-  cursor: pointer;
-}
 
-.play-button:hover {
-  background: #1f2937;
-}
-
-.play-button:focus-visible {
-  outline: 2px solid #2563eb;
-  outline-offset: 2px;
 }
 
 .station-roulette {
@@ -33,147 +20,36 @@ height: 100%;
   background: #fde68a;
   max-width: 100vw;
   max-height: 100vh;
+
 }
 
 .roulette-wheel {
+  z-index: 9;
   position: relative;
-  width: var(--wheel-size);
-  min-height: var(--wheel-size);
-  aspect-ratio: 1;
-  margin: 0 auto 1.5rem;
-  background:
-    radial-gradient(circle at center, #f3f4f6 0 24%, transparent 24.5%),
-    radial-gradient(circle at center, transparent 0 63%, #d1d5db 63.5% 64.5%, transparent 65%),
-    linear-gradient(145deg, #111827, #374151);
-  overflow: visible;
 }
 
 .roulette-option {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  z-index: 2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: var(--wheel-option-width);
-  min-height: var(--wheel-option-height);
-  /* centering handled via transform: translate(-50%,-50%) set from ngStyle */
 
-  border: 1px solid transparent;
-  border-radius: 1rem;
-  background: rgba(255, 255, 255, 0.92);
-  color: #111827;
-  font: inherit;
-  font-size: var(--wheel-option-font-size);
-  line-height: 1.1;
-  text-align: center;
-  cursor: pointer;
-  transition: transform 120ms ease, background-color 120ms ease, border-color 120ms ease;
-  overflow-wrap: anywhere;
+  border: 0;
+  border-radius: 100%;
+  background-color: #000;
+  padding: 6px;
+  opacity: 0.5;
+  width: 52px;
+  height: 52px;
+  overflow: hidden;
+
 }
 
-.roulette-option:hover,
-.roulette-option:focus-visible {
-  background: #fff;
-  border-color: #2563eb;
-}
-
-.roulette-option.active {
-  background: #fde68a;
-  border-color: #f59e0b;
-  font-weight: 700;
-}
-
-.roulette-center {
-  position: absolute;
-  inset: 50% auto auto 50%;
-  z-index: 1;
-  pointer-events: none;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: var(--wheel-center-size);
-  height: var(--wheel-center-size);
-  margin-top: calc(var(--wheel-center-size) / -2);
-  margin-left: calc(var(--wheel-center-size) / -2);
-  border-radius: 50%;
-  background: transparent;
-  color: #111827;
-  text-align: center;
-}
-
-.roulette-center span,
-.volume-control span {
-  font-weight: 600;
-}
-
-.roulette-center strong {
-  max-width: calc(var(--wheel-center-size) - 1.5rem);
-  margin-top: 0.35rem;
-  font-size: clamp(0.8rem, 2.8vw, 0.95rem);
-}
-
-@media (max-width: 900px) {
-  :host {
-    --wheel-size: min(32rem, 100vw - 1.5rem);
-    --wheel-radius: clamp(7.25rem, 30vw, 10.25rem);
-  
-  }
-}
-
-@media (max-width: 640px) {
-  :host {
-    --wheel-size: min(26rem, 100vw - 1rem);
-    --wheel-center-size: clamp(5.75rem, 24vw, 6.75rem);
-    --wheel-option-width: clamp(3.6rem, 14vw, 4.4rem);
-    --wheel-option-height: clamp(2.2rem, 8vw, 2.6rem);
-    --wheel-option-font-size: clamp(0.5rem, 1.9vw, 0.58rem);
-    --wheel-radius: clamp(5.9rem, 28vw, 8.2rem);
-    
-  }
-
-  .play-button,
-  .volume-control {
-    width: 100%;
-  }
-
-  .volume-control {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.5rem;
-  }
-
-  .volume-control input[type='range'] {
-    width: 100%;
-  }
-}
-
-@media (max-width: 440px) {
-  :host {
-    --wheel-size: min(22rem, 100vw - 0.75rem);
-    --wheel-center-size: 5.1rem;
-    --wheel-option-width: 3.15rem;
-    --wheel-option-height: 2rem;
-    --wheel-option-font-size: 0.45rem;
-    --wheel-radius: 5.1rem;
-    
-  }
-}
-
-.volume-control {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 0.75rem;
-  margin-top: 0.75rem;
-}
-
-.volume-control input[type='range'] {
-  width: min(12rem, 100%);
+.active {
+  opacity: 1;
+  border: 2px solid #76e070;
 }
 
 .radiologo {
-  max-width: 30px ;
+  height: 100%;
+  width: 100%;
+  aspect-ratio: 1/1;
+  ;
+
 }
