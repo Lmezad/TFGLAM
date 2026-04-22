@@ -1,15 +1,20 @@
-      #countdown{
-         width: 100vw;
+      #countdown {
+         /* avoid 100vw (can cause horizontal scroll due to scrollbar width); use 100% */
+         width: 100%;
          display: flex;
          justify-content: space-evenly;
       }
-      #countdown span, .peque{
+
+      #countdown span,
+      .peque {
          font-family: inherit;
          font-size: 0.7rem;
          font-weight: 900;
          transition: all 0.2s ease;
       }
-      #countdown span:hover, .peque:hover{
+
+      #countdown span:hover,
+      .peque:hover {
          font-size: 1rem;
          text-shadow: 0 0 3px grey;
       }

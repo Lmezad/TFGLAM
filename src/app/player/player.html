@@ -1,6 +1,6 @@
 <section class="station-roulette" aria-label="Selector de emisora">
   <!-- video -->
-  <video autoplay loop muted class="background-video">
+  <video autoplay loop muted playsinline preload="auto" crossorigin="anonymous" class="background-video" tabindex="-1">
     <source src="https://5fkef9udgm.ufs.sh/f/gkQPQrvJfr6GuYtoGmamtfCLDHTWN7a2goKn1vZJPIA5GM9e" type="video/mp4" />
     Tu navegador no soporta el elemento de video.
   </video>
@@ -9,12 +9,13 @@
     <!-- botones radios -->
     <button *ngFor="let radio of radios; let index = index" type="button" class="roulette-option"
       [class.active]="index === selectedRadioIndex" [attr.aria-pressed]="index === selectedRadioIndex"
-      (click)="selectRadio(index)">
-      <img [src]="radio.img" alt="radiologo" class="radiologo" />
+      [attr.aria-label]="radio.name" [style.transform]="getTransform(index)" (click)="selectRadio(index)">
+      <img [src]="radio.img" alt="{{ radio.name }}" class="radiologo" />
     </button>
     <!-- texto centro -->
     <div class="roulette-center">
       <strong>{{ selectedRadioName }}</strong>
+
     </div>
     <!-- reproductor audio  -->
     <audio #audioPlayer autoplay (play)="onAudioPlay()" (pause)="onAudioPause()">

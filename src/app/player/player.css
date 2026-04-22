@@ -1,25 +1,27 @@
 .background-video {
-  position: absolute;
-  object-fit: cover;
-  height: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  /* place the video as a full-viewport background */
+  position: fixed;
+  inset: 0;
+  /* use inset:0 to cover viewport; avoid explicit 100vw/100vh to prevent layout overflow on some browsers */
   width: 100%;
-  z-index: 0;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  /* sit behind the UI */
+  pointer-events: none;
+  /* don't capture clicks/touches */
+  display: block;
 
 
 }
 
 .station-roulette {
-
-  overflow: visible;
-  width: 100vw;
-  height: 100vh;
-  background: #fde68a;
-  max-width: 100vw;
-  max-height: 100vh;
+  /* contain the interactive area and avoid introducing scrollbars */
+  overflow: hidden;
+  width: 100%;
+  min-height: 100vh;
+  /* keep background transparent so the video shows through; use a subtle fallback color if needed */
+  background: transparent;
 
 }
 
@@ -28,8 +30,18 @@
   position: relative;
 }
 
-.roulette-option {
+/* make the wheel responsive: use vmin so it scales with viewport */
+.roulette-wheel {
+  width: min(80vmin, 720px);
+  height: min(80vmin, 720px);
+  max-width: 95vw;
+  /* give top spacing but avoid symmetric vertical margin that can push the container past viewport height */
+  margin: 6vh auto 0;
+  position: relative;
+  touch-action: manipulation;
+}
 
+.roulette-option {
   border: 0;
   border-radius: 100%;
   background-color: #000;
@@ -39,6 +51,15 @@
   height: 52px;
   overflow: hidden;
 
+  /* absolute positioning: TS sets transform to move them */
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-origin: center center;
+  /* No transition/animation: position changes are immediate for predictable UX */
+  transition: none;
+  min-width: 44px;
+  min-height: 44px;
 }
 
 .active {
@@ -52,4 +73,20 @@
   aspect-ratio: 1/1;
   ;
 
+}
+
+.roulette-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  text-align: center;
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  font-family: "Roboto Condensed", sans-serif;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  padding: 4px 8px;
+  backdrop-filter: blur(4px);
 }

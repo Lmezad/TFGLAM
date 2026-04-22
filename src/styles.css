@@ -1,7 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+/* Make the app fill the viewport and prevent scrollbars */
+html,
+body,
+app-root {
+  height: 100%;
+}
+
+/* hide scrollbars at the page level so fixed/background elements don't create global scrolls */
+body {
+  overflow: hidden;
+}
