@@ -1,5 +1,8 @@
 
 <section class="station-roulette" aria-label="Selector de emisora">
+  <video autoplay loop muted class="background-video">
+    <source src="https://5fkef9udgm.ufs.sh/f/gkQPQrvJfr6GuYtoGmamtfCLDHTWN7a2goKn1vZJPIA5GM9e" type="video/mp4">
+  </video>
   <div class="roulette-wheel" #wheelContainer>
     <button
       *ngFor="let radio of radios; let index = index"
@@ -10,16 +13,15 @@
   [ngStyle]="getRadioWheelStyle(index)"
       (click)="selectRadio(index)"
     >
-      {{ radio.name }}
+      <!-- {{ radio.name }} -->
+        <img [src]="radio.img" alt="radiologo" class ="radiologo" />
     </button>
-
+  
     <div class="roulette-center">
       <strong>{{ selectedRadioName }}</strong>
     </div>
   </div>
-</section>
-
-<button
+  <button
   type="button"
   class="play-button"
   (click)="togglePlay()"
@@ -44,3 +46,4 @@
 <audio #audioPlayer autoplay (play)="onAudioPlay()" (pause)="onAudioPause()">
   Tu navegador no soporta audio HTML5.
 </audio>
+</section>
