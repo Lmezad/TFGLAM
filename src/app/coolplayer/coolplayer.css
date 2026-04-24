@@ -1,0 +1,39 @@
+.coolplayer-container {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    padding: 10px;
+    justify-self: start;
+
+}
+
+.radio-buttons {
+    display: flex;
+    width: 100%;
+    overflow: scroll;
+    gap: 14px;
+
+}
+
+.radio-button {
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(90, 90, 90);
+    width: 100%;
+    height: 100%;
+}
+
+.radio-logo {
+    aspect-ratio: 1/1;
+    width: 80px;
+    height: 100%;
+    object-fit: cover;
+    object-position: bottom;
+
+}
+
+.active {
+    opacity: 1;
+    border: 2px solid #76e070;
+
+}
