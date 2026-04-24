@@ -14,12 +14,14 @@ export const radiosData: Radio[] = [
     url: 'https://5fkef9udgm.ufs.sh/f/gkQPQrvJfr6GdKeuqCyWMFjTUrZw1OICfBVbPlK6q3vXgsm2',
     img: './logos/BlondedImg.svg',
     backimg: './LogosBG/blonded.webp',
+    backimgRadio: './BgImg/Blonded.jpg'
   },
   {
     name: 'World Wide FM',
     url: 'https://5fkef9udgm.ufs.sh/f/gkQPQrvJfr6G7tfOjrAo5FSbJjW1qlpHPngcTtIZesyQN3dC',
     img: './logos/WorldwideImg.webp',
     backimg: './LogosBG/worldwidefm.webp',
+    backimgRadio: './BgImg/nonstopRadio.jpg'
   },
   {
     name: 'Non Stop Pop FM',

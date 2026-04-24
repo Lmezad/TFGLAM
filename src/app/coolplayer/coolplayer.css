@@ -3,15 +3,21 @@
     width: 100vw;
     overflow: hidden;
     padding: 10px;
-    justify-self: start;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
 
 }
 
 .radio-buttons {
     display: flex;
     width: 100%;
-    overflow: scroll;
+    overflow-x: auto;
+    overflow-y: hidden;
+    height: auto;
+    align-items: center;
     gap: 14px;
+
 
 }
 

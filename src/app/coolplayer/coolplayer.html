@@ -25,6 +25,7 @@
             [class.active]="index === selectedRadioIndex" [attr.aria-pressed]="index === selectedRadioIndex"
             [attr.aria-label]="radio.name" (click)="selectRadio(index)">
             <img [src]="radio.backimg" alt="{{ radio.name }}" class="radio-logo" />
+
         </button>
     </div>
 </section>
