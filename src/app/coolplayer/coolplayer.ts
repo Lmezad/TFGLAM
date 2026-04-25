@@ -2,10 +2,11 @@ import { CommonModule } from '@angular/common';
 import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { hydrateRadioDurations, radiosData, Radio } from '../cons/radio';
+import { Header } from '../header/header';
 
 @Component({
   selector: 'app-coolplayer',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, Header],
   templateUrl: './coolplayer.html',
   styleUrls: ['./coolplayer.css'],
 })

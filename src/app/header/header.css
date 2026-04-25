@@ -1,0 +1,24 @@
+.nav {
+    background: black;
+    padding: 8px 16px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.nav a {
+    color: #a8a8a8;
+    text-decoration: none;
+    font-size: 18px;
+    margin-right: 16px;
+    width: auto;
+    font-family: "Roboto Condensed", sans-serif;
+    font-weight: 700;
+
+
+}
+
+.nav-links {
+    justify-content: space-between;
+    display: flex;
+}

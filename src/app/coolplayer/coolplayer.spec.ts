@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Coolplayer } from './coolplayer';
 
+
 describe('Coolplayer', () => {
   let component: Coolplayer;
   let fixture: ComponentFixture<Coolplayer>;
@@ -10,7 +11,7 @@ describe('Coolplayer', () => {
     await TestBed.configureTestingModule({
       imports: [Coolplayer]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(Coolplayer);
     component = fixture.componentInstance;
