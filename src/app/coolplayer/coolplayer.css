@@ -6,6 +6,13 @@
     display: flex;
     flex-direction: column;
     justify-content: end;
+    /* Background is applied via inline styles from component (backimgRadio/backimg).
+       Keep the container transparent so the background image is visible. */
+    background-color: transparent;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 
 }
 
@@ -24,9 +31,10 @@
 .radio-button {
     border: none;
     border-radius: 5px;
-    background-color: rgb(90, 90, 90);
-    width: 100%;
-    height: 100%;
+    background-color: rgba(90, 90, 90, 0.6);
+    width: auto;
+    /* allow natural sizing so background shows through */
+    height: auto;
 }
 
 .radio-logo {

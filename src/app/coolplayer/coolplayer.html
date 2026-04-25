@@ -1,7 +1,11 @@
-<section class="coolplayer-container">
+<section class="coolplayer-container" id="coolplayer-container">
 
 
+    <div>
 
+        <img [src]="radios[selectedRadioIndex]?.img" alt="" class=radio-img>
+        <h1 class="radio-name" aria-live="polite">{{ radios[selectedRadioIndex]?.name }}</h1>
+    </div>
     <!-- reproductor audio  -->
     <audio #audioPlayer autoplay (play)="onAudioPlay()" (pause)="onAudioPause()">
         Tu navegador no soporta audio HTML5.

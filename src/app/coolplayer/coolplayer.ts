@@ -9,7 +9,7 @@ import { hydrateRadioDurations, radiosData, Radio } from '../cons/radio';
   templateUrl: './coolplayer.html',
   styleUrls: ['./coolplayer.css'],
 })
-export class Coolplayer {
+export class Coolplayer implements OnDestroy {
   private static readonly RANDOM_START_COOLDOWN_MS = 60_000;
   @ViewChild('audioPlayer') audioPlayer?: ElementRef<HTMLAudioElement>;
 
@@ -30,11 +30,57 @@ export class Coolplayer {
     this.syncVolume();
 
     this.updateAudioSource({ autoplay: false, randomStart: false });
+    // apply initial background for the selected radio
+    this.applyBackgroundForSelected();
   }
 
   onRadioChange(): void {
     this.selectedRadioUrl = this.radios[this.selectedRadioIndex]?.url ?? '';
     this.updateAudioSource({ autoplay: true, randomStart: true });
+    this.applyBackgroundForSelected();
+  }
+
+  ngOnDestroy(): void {
+    // clear any background we set when component is destroyed
+    try {
+      if (typeof document !== 'undefined' && document && document.body) {
+        document.body.style.backgroundImage = '';
+      }
+    } catch (e) {
+      // ignore
+    }
+  }
+
+  private applyBackgroundForSelected(): void {
+    try {
+      if (typeof document === 'undefined' || !document || !document.body) {
+        return;
+      }
+
+      const radio = this.radios[this.selectedRadioIndex];
+      const rawUrl = radio?.backimgRadio ?? radio?.backimg ?? '';
+      // Normalize relative paths that start with './' to remove the leading dot.
+      // When used as an inline style url() the path should be relative to the document.
+      const url = rawUrl ? rawUrl.replace(/^\.\//, '') : '';
+
+      const coolplayercontainer = document.getElementById('coolplayer-container');
+      if (coolplayercontainer) {
+        if (url) {
+          // Apply a few inline style properties to make sure the background covers the viewport
+          coolplayercontainer.style.backgroundImage = `url('${url}')`;
+          coolplayercontainer.style.backgroundSize = 'cover';
+          coolplayercontainer.style.backgroundPosition = 'center center';
+          coolplayercontainer.style.backgroundRepeat = 'no-repeat';
+          // Keep attachment fixed so the image stays with viewport
+          coolplayercontainer.style.backgroundAttachment = 'fixed';
+        } else {
+          // clear background
+          coolplayercontainer.style.backgroundImage = '';
+        }
+      }
+    } catch (e) {
+      // no-op
+    }
   }
 
   selectRadio(index: number): void {
