@@ -7,7 +7,11 @@
         <!-- radio  -->
         <div>
             <h1 class="radio-name" aria-live="polite">{{ radios[selectedRadioIndex]?.name }}</h1>
+            <h4 class="radio-game" aria-live="polite">{{ radios[selectedRadioIndex]?.game }}</h4>
+            <p class="radio-year" aria-live="polite">{{ radios[selectedRadioIndex]?.year }}</p>
+            <p class="radio-description" aria-live="polite">{{ radios[selectedRadioIndex]?.producer }}</p>
         </div>
+
         <!-- reproductor audio  -->
         <audio #audioPlayer autoplay (play)="onAudioPlay()" (pause)="onAudioPause()">
             Tu navegador no soporta audio HTML5.
