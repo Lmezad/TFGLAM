@@ -2,8 +2,6 @@
     height: 100vh;
     width: 100vw;
     overflow: hidden;
-    padding: 10px;
-    padding-bottom: 25%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -14,7 +12,12 @@
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
+}
 
+.radio-controls {
+    padding: 10px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+    padding-bottom: 25%;
 }
 
 .radio-buttons {
@@ -59,9 +62,11 @@
     align-items: center;
     margin-bottom: 20px;
     height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), transparent);
 }
 
 .radio-img {
     width: 200px;
+
 
 }
