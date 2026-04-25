@@ -3,9 +3,10 @@
     width: 100vw;
     overflow: hidden;
     padding: 10px;
+    padding-bottom: 25%;
     display: flex;
     flex-direction: column;
-    justify-content: end;
+    justify-content: space-between;
     /* Background is applied via inline styles from component (backimgRadio/backimg).
        Keep the container transparent so the background image is visible. */
     background-color: transparent;
@@ -39,8 +40,8 @@
 
 .radio-logo {
     aspect-ratio: 1/1;
-    width: 80px;
-    height: 100%;
+    width: 160px;
+    height: 160px;
     object-fit: cover;
     object-position: bottom;
 
@@ -49,5 +50,18 @@
 .active {
     opacity: 1;
     border: 2px solid #76e070;
+
+}
+
+.radio-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    height: 100%;
+}
+
+.radio-img {
+    width: 200px;
 
 }
