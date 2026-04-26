@@ -2,11 +2,10 @@ import { CommonModule } from '@angular/common';
 import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { hydrateRadioDurations, radiosData, Radio } from '../cons/radio';
-import { Header } from '../header/header';
 
 @Component({
   selector: 'app-coolplayer',
-  imports: [CommonModule, FormsModule, Header],
+  imports: [CommonModule, FormsModule,],
   templateUrl: './coolplayer.html',
   styleUrls: ['./coolplayer.css'],
 })
@@ -18,7 +17,7 @@ export class Coolplayer implements OnDestroy {
   selectedRadioIndex = 0;
   selectedRadioUrl = this.radios[0]?.url ?? '';
   isPlaying = false;
-  volume = 1;
+  volume = 0.2;
   private activeRadioUrl = this.selectedRadioUrl;
   private randomStartCooldowns = new Map<string, number>();
   private savedPlaybackPositions = new Map<string, number>();
@@ -30,7 +29,7 @@ export class Coolplayer implements OnDestroy {
   ngAfterViewInit(): void {
     this.syncVolume();
 
-    this.updateAudioSource({ autoplay: false, randomStart: false });
+    this.updateAudioSource({ autoplay: false, randomStart: true });
     // apply initial background for the selected radio
     this.applyBackgroundForSelected();
   }
