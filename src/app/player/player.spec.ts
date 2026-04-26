@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { vi } from 'vitest';
+import '../../test-setup';
 
 import { Player } from './player';
 
@@ -9,9 +11,9 @@ describe('Player', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Player]
+      imports: [Player, RouterTestingModule]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(Player);
     component = fixture.componentInstance;
