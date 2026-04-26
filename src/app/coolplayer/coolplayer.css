@@ -14,10 +14,13 @@
     background-attachment: fixed;
 }
 
-.radio-controls {
+.radio-info {
     padding: 10px;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+    background: linear-gradient(to top, rgba(0, 0, 0, 1), transparent);
     padding-bottom: 25%;
+    font-family: "Roboto Condensed", system-ui;
+    color: rgb(217, 215, 215);
+    height: 50%;
 }
 
 .radio-buttons {
