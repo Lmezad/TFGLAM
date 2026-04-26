@@ -2,12 +2,11 @@ import { CommonModule } from '@angular/common';
 import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { hydrateRadioDurations, radiosData, Radio } from '../cons/radio';
-import { Header } from '../header/header';
 
 @Component({
   selector: 'app-player',
   standalone: true,
-  imports: [CommonModule, FormsModule, Header],
+  imports: [CommonModule, FormsModule],
   templateUrl: './player.html',
   styleUrls: ['./player.css'],
 })
@@ -168,6 +167,22 @@ export class Player implements AfterViewInit, OnInit, OnDestroy {
 
   onVolumeInput(): void {
     this.syncVolume();
+  }
+
+  /**
+   * Return the appropriate volume icon path depending on current volume.
+   * Paths point to the `public/icons` folder which is served at `/icons/*`.
+   */
+  getVolumeIcon(): string {
+    if (this.volume <= 0) {
+      return '/icons/volume-x.svg';
+    }
+
+    if (this.volume <= 0.5) {
+      return '/icons/volume-1.svg';
+    }
+
+    return '/icons/volume-2.svg';
   }
 
   get selectedRadioName(): string {

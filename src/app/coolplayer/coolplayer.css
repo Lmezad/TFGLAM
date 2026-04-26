@@ -79,3 +79,123 @@
 
 
 }
+
+/* Controles de reproducción */
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.play-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    /* Igualamos el tamaño al del contenedor .volume-control */
+    padding: 6px 10px;
+    height: 40px;
+    min-width: 40px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 120ms ease, background 120ms ease;
+}
+
+.play-button:active {
+    transform: scale(0.98);
+}
+
+.control-icon {
+    width: 20px;
+    height: 20px;
+    display: block;
+    /* For external SVG images: invertir y aumentar brillo para que se vean blancos */
+    filter: invert(1) brightness(2) saturate(0);
+}
+
+.volume-control {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    height: 40px;
+    /* igual alto que play-button */
+}
+
+.volume-icon {
+    width: 20px;
+    height: 20px;
+    opacity: 0.95;
+}
+
+.volume-control input[type=range] {
+    width: 140px;
+}
+
+/* Slider verde personalizado */
+.volume-control input[type=range]::-webkit-slider-runnable-track {
+    height: 6px;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 999px;
+}
+
+.volume-control input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    margin-top: -5px;
+    /* center on track */
+    background: #ffffff;
+    border: 2px solid #76e070;
+    border-radius: 50%;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.volume-control input[type=range]:focus {
+    outline: none;
+}
+
+.volume-control input[type=range]::-moz-range-track {
+    height: 6px;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 999px;
+}
+
+.volume-control input[type=range]::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background: #ffffff;
+    border: 2px solid #76e070;
+    border-radius: 50%;
+}
+
+/* When browsers don't support the dynamic background, fallback: show green fill using accent-color where available */
+.volume-control input[type=range] {
+    accent-color: #76e070;
+}
+
+/* Asegurar contraste blanco para textos e indicadores internos */
+.controls,
+.play-button,
+.volume-control {
+    color: #ffffff;
+}
+
+.play-button:hover,
+.volume-control:hover {
+    background: rgba(255, 255, 255, 0.09);
+}
+
+.visually-hidden {
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    white-space: nowrap;
+    /* added line */
+}

@@ -105,6 +105,22 @@ export class Coolplayer implements OnDestroy {
     this.syncVolume();
   }
 
+  /**
+   * Devuelve la ruta del icono de volumen apropiado según el valor actual de `this.volume`.
+   * Las rutas apuntan a la carpeta `public/icons` servida en `/icons/*`.
+   */
+  getVolumeIcon(): string {
+    if (this.volume <= 0) {
+      return '/icons/volume-x.svg';
+    }
+
+    if (this.volume <= 0.5) {
+      return '/icons/volume-1.svg';
+    }
+
+    return '/icons/volume-2.svg';
+  }
+
   get selectedRadioName(): string {
     return this.radios[this.selectedRadioIndex]?.name ?? '';
   }
