@@ -26,7 +26,7 @@ export class Player implements AfterViewInit, OnInit, OnDestroy {
   selectedRadioIndex = 0;
   selectedRadioUrl = this.radios[0]?.url ?? '';
   isPlaying = false;
-  volume = 1;
+  volume = 0.2;
   private activeRadioUrl = this.selectedRadioUrl;
   private randomStartCooldowns = new Map<string, number>();
   private savedPlaybackPositions = new Map<string, number>();
@@ -42,7 +42,7 @@ export class Player implements AfterViewInit, OnInit, OnDestroy {
   ngAfterViewInit(): void {
     this.syncVolume();
 
-    this.updateAudioSource({ autoplay: false, randomStart: false });
+    this.updateAudioSource({ autoplay: false, randomStart: true });
 
     // Start observing size changes for the wheel container to keep layout responsive
     const container = this.wheelContainer?.nativeElement;
