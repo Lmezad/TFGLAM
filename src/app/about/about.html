@@ -1,33 +1,97 @@
-<body>
-  <div class="responsive-container-block bigContainer">
-    <div class="responsive-container-block Container">
-      <p class="text-blk heading">
-        About Us
-      </p>
-      <p class="text-blk subHeading">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-      </p>
-      <div class="social-icons-container">
-        <a class="social-icon">
-          <img class="socialIcon image-block"
-            src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/bb33.png">
-        </a>
-        <a class="social-icon">
-          <img class="socialIcon image-block"
-            src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/bb34.png">
-        </a>
-        <a class="social-icon">
-          <img class="socialIcon image-block"
-            src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/bb35.png">
-        </a>
-        <a class="social-icon">
-          <img class="socialIcon image-block"
-            src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/bb36.png">
-        </a>
+<section class="about-page">
+  <div class="about-backdrop"></div>
+
+  <div class="about-shell">
+    <section class="about-hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Project Notes</p>
+        <h1>Game radio, atmosphere, and why this project exists.</h1>
+        <p class="hero-text">
+          This space turns the app into more than a station selector. It explains the design idea behind the project:
+          using in-game radio as a way to revisit the identity, mood, and worldbuilding of Grand Theft Auto.
+        </p>
+
+        <div class="hero-tags">
+          <span>Angular</span>
+          <span>Electron</span>
+          <span>Interactive archive</span>
+        </div>
       </div>
-    </div>
+
+      <div class="countdown-card">
+        <p class="card-label">Next milestone</p>
+        <h2>Countdown to the target date</h2>
+        <app-countdown></app-countdown>
+      </div>
+    </section>
+
+    <section class="about-grid">
+      <article class="info-card wide">
+        <p class="card-label">About GTA Radio</p>
+        <h3>The radio stations are part of the world, not just background music.</h3>
+        <p>
+          A radio station in Grand Theft Auto is a fictional broadcast that accompanies the player while driving or
+          exploring the city. Music, hosts, ads, satire and commentary all help define the tone of a game and the era
+          it is trying to portray.
+        </p>
+        <p>
+          Across the series, stations range from genre-focused playlists to talk shows and absurd commercials. That
+          mix is what makes the soundtrack feel embedded in the city instead of sitting on top of it.
+        </p>
+      </article>
+
+      <article class="info-card">
+        <p class="card-label">Project Goal</p>
+        <h3>A final degree project with a playable archive approach.</h3>
+        <p>
+          This application is designed as a themed listening experience for video game radio. The objective is to
+          preserve the feeling of moving through those fictional stations while presenting them in a cleaner desktop
+          interface.
+        </p>
+      </article>
+
+      <article class="info-card">
+        <p class="card-label">Technical Angle</p>
+        <h3>Angular for interface, Electron for packaging.</h3>
+        <p>
+          The project combines a web UI with desktop delivery, allowing the interface to behave like a focused media
+          player while keeping the flexibility of Angular components and routing.
+        </p>
+      </article>
+
+      <article class="info-card">
+        <p class="card-label">Audio Formats</p>
+        <h3>Radio assets changed format across the series.</h3>
+        <p>
+          Depending on the game, GTA radio audio has been stored in WAV, MP3 or Ogg Vorbis formats. That variation is
+          part of the broader history of how the series handled music, storage and platform constraints.
+        </p>
+      </article>
+
+      <article class="info-card links-card">
+        <p class="card-label">Resources</p>
+        <h3>Useful links related to the project.</h3>
+        <div class="link-list">
+          <a href="https://support.rockstargames.com/articles/7bNaeoMFTV0iUDGhStTXvz/policy-on-posting-copyrighted-rockstar-games-material"
+            target="_blank" rel="noreferrer">
+            Rockstar copyright policy
+          </a>
+          <a href="https://github.com/Lmezad/TFGLAM/" target="_blank" rel="noreferrer">
+            Project repository
+          </a>
+          <a href="https://www.patreon.com/" target="_blank" rel="noreferrer">
+            Support page
+          </a>
+        </div>
+      </article>
+
+      <article class="info-card quote-card">
+        <p class="card-label">Design Intent</p>
+        <blockquote>
+          The point is not only to listen to songs, but to recover the feeling of tuning into a station that belongs
+          to a world with its own voice.
+        </blockquote>
+      </article>
+    </section>
   </div>
-  <app-countdown></app-countdown>
-</body>
+</section>
