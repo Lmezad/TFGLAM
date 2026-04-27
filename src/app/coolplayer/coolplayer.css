@@ -16,12 +16,13 @@
 
 .radio-info {
     padding: 10px;
-    background: linear-gradient(to top, rgba(0, 0, 0, 1), transparent);
-    padding-bottom: 25%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0.698) 90%, transparent);
     font-family: "Roboto Condensed", system-ui;
     color: rgb(217, 215, 215);
     height: 50%;
+    padding-top: 50px;
 }
+
 
 .radio-buttons {
     display: flex;
@@ -56,7 +57,41 @@
 .radio-name {
 
     font-family: "Roboto Condensed", system-ui;
-    ;
+    margin-bottom: 6px;
+}
+
+.year-game-container {
+    padding: 6px;
+    display: flex;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.13);
+    width: fit-content;
+    margin-bottom: 6px;
+
+}
+
+.radio-year {
+    margin-right: 10px;
+
+}
+
+.producer-genre-container {
+    padding: 6px;
+    display: flex;
+    gap: 15px;
+
+
+}
+
+.radio-producer {
+
+    opacity: 0.8;
+
+    font-style: italic;
+}
+
+.radio-genre {
+    opacity: 0.6;
 }
 
 .active {
@@ -67,18 +102,28 @@
 
 .radio-image-container {
     display: flex;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
     margin-bottom: 20px;
     height: 100%;
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), transparent);
+    padding-left: 20px;
+
 }
 
 .radio-img {
     width: 200px;
+    transition: transform 150ms ease;
 
 
 }
+
+.radio-img:hover {
+    transform: rotate3d(0, 1, 0, 40deg);
+    transition: transform 150ms ease;
+
+}
+
 
 /* Controles de reproducción */
 .controls {
@@ -86,6 +131,8 @@
     align-items: center;
     gap: 12px;
     margin-top: 12px;
+    margin-bottom: 12px;
+    justify-content: space-between;
 }
 
 .play-button {
