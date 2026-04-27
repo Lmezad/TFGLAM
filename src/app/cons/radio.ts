@@ -137,16 +137,16 @@ export const radiosData: Radio[] = [
     game: 'GTA V'
   },
   {
-    name: 'Los Santos Rock Radio',
-    url: '',
+    name: 'San Juan Sounds',
+    url: 'https://5fkef9udgm.ufs.sh/f/gkQPQrvJfr6GKi076olblSnZxc7CQP86O1KDfiHJ4F0qLwgs',
     img: './logos/Radio_Los_SantosImg.svg',
     backimg: './LogosBG/lossantos.webp',
     // no specific BgImg for Los Santos -> use default fallback
     backimgRadio: './BgImg/default.jpg',
-    genre: 'Classic Rock',
+    genre: 'Latin / Reggaeton',
     producer: 'Various',
     year: 2013,
-    game: 'GTA V'
+    game: 'GTA IV'
   },
   {
     name: 'East Los FM',
