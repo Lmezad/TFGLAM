@@ -1,0 +1,32 @@
+{
+    "name": "mi-app",
+    "version": "1.0.0",
+    "description": "gta radio desktop app",
+    "author": "Luis Alejandro Meza",
+    "main": "main.js",
+    "scripts": {
+        "start": "electron .",
+        "build": "electron-builder"
+    },
+    "build": {
+        "appId": "com.miapp.electron",
+        "productName": "Mi Aplicación",
+        "directories": {
+            "output": "dist"
+        },
+        "files": [
+            "**/*"
+        ],
+        "win": {
+            "icon": "build/icon.ico"
+        },
+        "mac": {
+            "icon": "build/icon.icns",
+            "identity": null
+        }
+    },
+    "devDependencies": {
+        "electron": "^28.0.0",
+        "electron-builder": "^24.13.3"
+    }
+}

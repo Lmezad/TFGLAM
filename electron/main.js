@@ -20,7 +20,8 @@ function createWindow() {
     win.show();
   });
 
-  win.loadURL('http://localhost:4200');
+  // win.loadURL('http://localhost:4200');
+  win.loadURL('https://tfglam.vercel.app/');
 }
 
 app.whenReady().then(createWindow);
