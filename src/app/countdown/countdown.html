@@ -1,40 +1,28 @@
-<!DOCTYPE html>
-<html lang="es">
+<section class="countdown-shell" aria-label="Countdown to project target date">
+  <div class="countdown-grid">
+    <article class="time-card">
+      <span class="time-value">{{ weeks }}</span>
+      <span class="time-label">Weeks</span>
+    </article>
 
-<head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Countdown</title>
+    <article class="time-card">
+      <span class="time-value">{{ days }}</span>
+      <span class="time-label">Days</span>
+    </article>
 
-</head>
+    <article class="time-card">
+      <span class="time-value">{{ hours }}</span>
+      <span class="time-label">Hours</span>
+    </article>
 
-<body>
-   <section id="countdown">
-      <div id="weeks">
-         <span>{{ weeks }}</span>
-         <span class="peque">Semanas</span>
-      </div>
-      <div id="days">
-         <span>{{ days }}</span>
-         <span class="peque">Días</span>
-      </div>
-      <div id="hours">
-         <span>{{ hours }}</span>
-         <span class="peque">Horas</span>
-      </div>
-      <div id="minutes">
-         <span>{{ minutes }}</span>
-         <span class="peque">Minutos</span>
-      </div>
-      <div id="seconds">
-         <span>{{ seconds }}</span>
-         <span class="peque">Segundos</span>
-      </div>
-   </section>
+    <article class="time-card">
+      <span class="time-value">{{ minutes }}</span>
+      <span class="time-label">Minutes</span>
+    </article>
 
-
-
-
-</body>
-
-</html>
+    <article class="time-card">
+      <span class="time-value">{{ seconds }}</span>
+      <span class="time-label">Seconds</span>
+    </article>
+  </div>
+</section>
