@@ -30,7 +30,6 @@ export class Coolplayer implements OnDestroy {
     this.syncVolume();
 
     this.updateAudioSource({ autoplay: false, randomStart: true });
-    // apply initial background for the selected radio
     this.applyBackgroundForSelected();
   }
 
@@ -41,7 +40,6 @@ export class Coolplayer implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    // clear any background we set when component is destroyed
     try {
       if (typeof document !== 'undefined' && document && document.body) {
         document.body.style.backgroundImage = '';
@@ -59,27 +57,21 @@ export class Coolplayer implements OnDestroy {
 
       const radio = this.radios[this.selectedRadioIndex];
       const rawUrl = radio?.backimgRadio ?? radio?.backimg ?? '';
-      // Normalize relative paths that start with './' to remove the leading dot.
-      // When used as an inline style url() the path should be relative to the document.
       const url = rawUrl ? rawUrl.replace(/^\.\//, '') : '';
 
       const coolplayercontainer = document.getElementById('coolplayer-container');
       if (coolplayercontainer) {
         if (url) {
-          // Apply a few inline style properties to make sure the background covers the viewport
           coolplayercontainer.style.backgroundImage = `url('${url}')`;
           coolplayercontainer.style.backgroundSize = 'cover';
           coolplayercontainer.style.backgroundPosition = 'center center';
           coolplayercontainer.style.backgroundRepeat = 'no-repeat';
-          // Keep attachment fixed so the image stays with viewport
           coolplayercontainer.style.backgroundAttachment = 'fixed';
         } else {
-          // clear background
           coolplayercontainer.style.backgroundImage = '';
         }
       }
     } catch (e) {
-      // no-op
     }
   }
 
@@ -104,10 +96,6 @@ export class Coolplayer implements OnDestroy {
     this.syncVolume();
   }
 
-  /**
-   * Devuelve la ruta del icono de volumen apropiado según el valor actual de `this.volume`.
-   * Las rutas apuntan a la carpeta `public/icons` servida en `/icons/*`.
-   */
   getVolumeIcon(): string {
     if (this.volume <= 0) {
       return '/icons/volume-x.svg';

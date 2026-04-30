@@ -59,7 +59,6 @@ export const radiosData: Radio[] = [
   {
     name: 'The Lab',
     url: 'https://5fkef9udgm.ufs.sh/f/gkQPQrvJfr6GTLEdVuFPrBmIdEt0134i2k6fQXT7JLaFY9cC',
-    // No specific logo file for "The Lab" in public/logos; reusing The_Blue_ArkImg.svg as a fallback
     img: './logos/The_Blue_ArkImg.svg',
     backimg: './LogosBG/theblueark.webp',
     backimgRadio: './BgImg/thelab.jpg',
@@ -84,7 +83,6 @@ export const radiosData: Radio[] = [
     url: 'https://5fkef9udgm.ufs.sh/f/gkQPQrvJfr6GaDk6xgY8NwBHd6vKx4RLSIcWfuk0pE7r1tsD',
     img: './logos/Vinewood_Boulevard_RadioImg.svg',
     backimg: './LogosBG/vinewoodboulevard.webp',
-    // no specific BgImg available for Vinewood in public/BgImg -> use default fallback
     backimgRadio: './BgImg/default.jpg',
     genre: 'Rock / Classic Rock',
     producer: 'Various',
@@ -107,7 +105,6 @@ export const radiosData: Radio[] = [
     url: 'https://5fkef9udgm.ufs.sh/f/gkQPQrvJfr6GXC4i5EcNMTgQVYd3xEGoWtaIuH9KCNpOfwj0',
     img: './logos/Space_103_2Img.svg',
     backimg: './LogosBG/space.webp',
-    // no specific BgImg for Space 103.2 -> use default fallback
     backimgRadio: './BgImg/default.jpg',
     genre: 'Soul / Funk / Disco',
     producer: 'Various',
@@ -141,7 +138,6 @@ export const radiosData: Radio[] = [
     url: 'https://5fkef9udgm.ufs.sh/f/gkQPQrvJfr6GKi076olblSnZxc7CQP86O1KDfiHJ4F0qLwgs',
     img: './logos/Radio_Los_SantosImg.svg',
     backimg: './LogosBG/lossantos.webp',
-    // no specific BgImg for Los Santos -> use default fallback
     backimgRadio: './BgImg/default.jpg',
     genre: 'Latin / Reggaeton',
     producer: 'Various',
